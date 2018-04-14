@@ -16,13 +16,23 @@ class ThreadsController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
+	 * @param Channel $channel
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index() {
+	public function index( Channel $channel ) {
 
 
-		$threads = Thread::orderBy( 'created_at', 'desc' )->with( 'channel' )->get();
+		if ( $channel->exists ) {
 
+			$threads = $channel->threads()->latest()->get();
+
+
+		} else {
+
+
+			$threads = Thread::orderBy( 'created_at', 'desc' )->with( 'channel' )->get();
+		}
 
 		return view( 'threads.index', compact( 'threads' ) );
 	}
@@ -33,6 +43,7 @@ class ThreadsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
+
 //		$channels = Channel::all();
 		$channels = Channel::all( 'id', 'name' );
 
