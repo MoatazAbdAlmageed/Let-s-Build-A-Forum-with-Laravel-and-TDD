@@ -24,7 +24,7 @@ class ChannelController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		return view( 'channels.create' );
 	}
 
 	/**
@@ -46,9 +46,12 @@ class ChannelController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show( $id ) {
-		$threads = Thread::where( 'channel_id', $id )->with( 'channel' )->get();
 
-		return view( 'threads.index', compact( 'threads' ) );
+		$threads = Thread::where( 'channel_id', $id )->with( 'channel' )->get();
+		$channel = Channel::where( 'id', $id )->first();
+
+
+		return view( 'threads.index', compact( 'threads', 'channel' ) );
 	}
 
 	/**

@@ -5,7 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3><b>{{$thread->title}}</b> by <a href=""> {{$thread->owner->name}}</a>
+                    <div class="card-header"><h3><b>{{$thread->title}}</b>
+                            by <a href=""> {{$thread->owner->name}}</a>
+                            in <a href="{{$thread->channel->path()}}"> {{$thread->channel->name}}</a>
                         </h3></div>
 
                     <div class="card-body">

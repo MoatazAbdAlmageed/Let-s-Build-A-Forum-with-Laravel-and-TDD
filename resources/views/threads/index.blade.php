@@ -8,6 +8,11 @@
                     <div class="card-header">Threads
 
 
+                        @if (isset($channel))
+                            in {{$channel->name}}
+                        @endif
+
+
                         @if (auth()->check())
                             <span class="float-right"><a name="" id=""
                                                          class="btn btn-primary"
@@ -38,7 +43,9 @@
                                             <tr>
                                                 <td scope="row"><a href="{{ $thread->path() }}"> {{$thread->title}}</a>
                                                 </td>
-                                                <td>{{$thread->channel['name']}}</td>
+                                                <td>
+                                                    <a href="{{$thread->channel->path()}}">{{$thread->channel['name']}}</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

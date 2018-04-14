@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Validator;
 
 class ThreadsController extends Controller {
 
@@ -26,6 +28,8 @@ class ThreadsController extends Controller {
 		if ( $channel->exists ) {
 
 			$threads = $channel->threads()->latest()->get();
+
+			return view( 'threads.index', compact( 'threads' ) );
 
 
 		} else {
@@ -59,13 +63,16 @@ class ThreadsController extends Controller {
 	 */
 	public function store( Request $request ) {
 
-
-		$this->validate( $request, [
-			'title'      => 'required',
+		$validator = Validator::make( $request->all(), [
+			'title'      => 'required|unique:threads',
 			'body'       => 'required',
 			'channel_id' => 'required|exists:channels,id',
-
 		] );
+
+		if ( $validator->fails() ) {
+			return Redirect::back()->withInput()->withErrors( $validator );
+		}
+
 		$thread = Thread::create( [
 			'user_id'    => auth()->id(),
 			'channel_id' => request( 'channel_id' ),
@@ -73,6 +80,7 @@ class ThreadsController extends Controller {
 			'body'       => request( 'body' ),
 
 		] );
+
 
 		return redirect( $thread->path() );
 	}

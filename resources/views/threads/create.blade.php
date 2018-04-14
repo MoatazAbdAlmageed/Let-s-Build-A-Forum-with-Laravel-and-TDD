@@ -8,6 +8,17 @@
                     <div class="card-header"><h4>New</h4></div>
                     <div class="card-body">
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
 
                         {!! Form::open(['url' => 'threads']) !!}
 
@@ -30,8 +41,8 @@
                             {{--{{ Form::select('channel_id', $channels, null, ['class'=>'form-control']) }}--}}
 
                             <select id="channel_id" name="channel_id" class="form-control">
-                                @foreach ($channels as $key => $value)
-                                    <option value="{{ $key }}">{{ $value->name }}</option>
+                                @foreach ($channels as $channel)
+                                    <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                 @endforeach
                             </select>
                         </div>
