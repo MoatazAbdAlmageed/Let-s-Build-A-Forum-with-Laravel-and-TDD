@@ -6,7 +6,17 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h3><b>{{$thread->title}}</b>
-                            by <a href=""> {{$thread->owner->name}}</a>
+                            by
+                            <a href="{{url('threads') }}?by={{  $thread->owner->name }}">
+
+                                @if (auth()->check() && auth()->user()->id == $thread->owner['id'])
+                                    Mine
+                                @else
+                                    {{$thread->owner->name}}
+                                @endif
+
+
+                            </a>
                             in <a href="{{$thread->channel->path()}}"> {{$thread->channel->name}}</a>
                         </h3></div>
 
