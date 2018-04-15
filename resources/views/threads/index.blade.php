@@ -61,7 +61,7 @@
                                                     <td>
                                                         <a href="/threads?by={{$thread->owner['name']}}">
 
-                                                            @if (auth()->user()->id == $thread->owner['id'])
+                                                            @if (auth()->check() && auth()->user()->id == $thread->owner['id'])
                                                                 Mine
                                                             @else
                                                                 {{$thread->owner['name']}}
