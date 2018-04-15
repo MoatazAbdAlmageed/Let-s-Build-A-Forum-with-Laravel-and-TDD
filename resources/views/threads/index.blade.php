@@ -8,6 +8,10 @@
                     <div class="card-header">
                         <h4>Threads
 
+                            @if (request('by'))
+                                by {{$user->name}}
+                            @endif
+
 
                             @if (isset($channel))
                                 in {{$channel->name}}
@@ -28,7 +32,7 @@
 
                         <ol>
                             @if (count($threads))
-                              
+
 
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered">
@@ -36,6 +40,11 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Channel</th>
+
+                                            @if (!request('by'))
+                                                <th>Author</th>
+                                            @endif
+
 
                                         </tr>
                                         </thead>
@@ -47,6 +56,22 @@
                                                 <td>
                                                     <a href="{{$thread->channel->path()}}">{{$thread->channel['name']}}</a>
                                                 </td>
+
+                                                @if (!request('by'))
+                                                    <td>
+                                                        <a href="/threads?by={{$thread->owner['name']}}">
+
+                                                            @if (auth()->user()->id == $thread->owner['id'])
+                                                                Mine
+                                                            @else
+                                                                {{$thread->owner['name']}}
+                                                            @endif
+
+                                                        </a>
+                                                    </td>
+                                                @endif
+
+
                                             </tr>
                                         @endforeach
                                         </tbody>

@@ -67,7 +67,27 @@
                         </div>
                     </li>
 
-                    <li><a class="btn btn-warning   " href="/threads/">Threads</a></li>
+
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Browse
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <a class="dropdown-item" href="/threads/">Threads</a>
+                                @if (auth()->user())
+                                    <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My
+                                        Threads</a>
+
+                                @endif
+                            </div>
+                        </div>
+
+
+                    </li>
+
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

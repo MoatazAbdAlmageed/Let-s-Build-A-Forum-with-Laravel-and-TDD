@@ -42,6 +42,9 @@ class ThreadsController extends Controller {
 			if ( $user->count() ) {
 				$user = $user->firstOrFail();
 				$threads->where( 'user_id', $user->id );
+				$threads = $threads->get();
+
+				return view( 'threads.index', compact( 'threads', 'user' ) );
 			} else {
 				$threads = $threads->where( 'user_id', - 1 );
 			}

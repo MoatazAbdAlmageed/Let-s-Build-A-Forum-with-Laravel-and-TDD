@@ -76,6 +76,7 @@ class ThreadsTest extends TestCase {
 		     ->assertDontSee( $threadNotByMoataz->title );
 	}
 
+
 	protected function setUp() {
 		parent::setUp();
 		$this->thread = create( 'App\Thread' );
