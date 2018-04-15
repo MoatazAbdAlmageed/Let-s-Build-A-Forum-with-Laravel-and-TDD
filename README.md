@@ -1,4 +1,5 @@
 # Let's Build A Forum with Laravel and TDD
+![alt text](https://laracasts.com/images/series/circles/lets-build-a-forum.png)
 
 ## Introduction
 
