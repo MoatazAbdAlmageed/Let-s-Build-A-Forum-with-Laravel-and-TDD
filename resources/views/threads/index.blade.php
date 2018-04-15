@@ -3,23 +3,24 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Threads
+                    <div class="card-header">
+                        <h4>Threads
 
 
-                        @if (isset($channel))
-                            in {{$channel->name}}
-                        @endif
+                            @if (isset($channel))
+                                in {{$channel->name}}
+                            @endif
 
 
-                        @if (auth()->check())
-                            <span class="float-right"><a name="" id=""
-                                                         class="btn btn-primary"
-                                                         href="{{url('threads','create')}}"
-                                                         role="button">New</a>
+                            @if (auth()->check())
+                                <span class="float-right"><a name="" id=""
+                                                             class="btn btn-primary"
+                                                             href="{{url('threads','create')}}"
+                                                             role="button">New</a>
                             </span>
-                        @endif
+                            @endif</h4>
                     </div>
 
                     <div class="card-body">
@@ -27,7 +28,7 @@
 
                         <ol>
                             @if (count($threads))
-
+                              
 
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered">

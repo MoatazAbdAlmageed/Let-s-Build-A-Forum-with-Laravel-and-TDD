@@ -59,6 +59,23 @@ class ThreadsTest extends TestCase {
 		     ->assertDontSee( $threadNotInChannel->title );
 	}
 
+	/**
+	 * @@test
+	 */
+
+	public function user_can_filter_threads_by_user() {
+
+		$this->logIn( create( 'App\User', [ 'name' => 'moataz' ] ) );
+
+		$threadByMoataz    = create( 'App\Thread', [ 'user_id' => auth()->id() ] );
+		$threadNotByMoataz = create( 'App\Thread' );
+
+
+		$this->get( 'threads?by=moataz' )
+		     ->assertSee( $threadByMoataz->title )
+		     ->assertDontSee( $threadNotByMoataz->title );
+	}
+
 	protected function setUp() {
 		parent::setUp();
 		$this->thread = create( 'App\Thread' );

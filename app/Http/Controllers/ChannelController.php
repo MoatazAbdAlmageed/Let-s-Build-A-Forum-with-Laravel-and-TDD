@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Validator;
 
 class ChannelController extends Controller {
 	/**
@@ -13,9 +15,8 @@ class ChannelController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$channels = Channel::all();
 
-		return view( 'channels.index', compact( 'channels' ) );
+		return view( 'channels.index' );
 	}
 
 	/**
@@ -35,7 +36,23 @@ class ChannelController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store( Request $request ) {
-		//
+		$validator = Validator::make( $request->all(), [
+			'name' => 'required|unique:channels',
+		] );
+
+
+		if ( $validator->fails() ) {
+			return Redirect::back()->withInput()->withErrors( $validator );
+		}
+		$channel = Channel::create( [
+			'name' => ucfirst( request( 'name' ) ),
+			'slug' => lcfirst( preg_replace( '/\s+/', '-', request( 'name' ) ) ),
+
+		] );
+
+
+		return redirect( $channel->path() );
+
 	}
 
 	/**

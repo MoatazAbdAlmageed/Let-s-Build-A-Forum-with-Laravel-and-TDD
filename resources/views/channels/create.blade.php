@@ -7,16 +7,22 @@
                 <div class="card">
                     <div class="card-header"><h4>New Channel</h4></div>
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-
-                        {!! Form::open(['url' => 'threads']) !!}
-
-
+                        {!! Form::open(['url' => 'channels']) !!}
                         {{csrf_field()}}
 
                         <div class="form-group">
                             <label for="title">Name</label>
-                            <input type="text" class="form-control" name="name" id="name"
+                            <input required type="text" class="form-control" name="name" id="name"
                                    aria-describedby="helpId"
                                    placeholder="">
 

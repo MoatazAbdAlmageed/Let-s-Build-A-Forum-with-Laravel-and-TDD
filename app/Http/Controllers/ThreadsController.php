@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
@@ -26,17 +27,28 @@ class ThreadsController extends Controller {
 
 
 		if ( $channel->exists ) {
-
-			$threads = $channel->threads()->latest()->get();
-
-			return view( 'threads.index', compact( 'threads' ) );
-
+			$threads = $channel->threads()->latest();
 
 		} else {
 
-
-			$threads = Thread::orderBy( 'created_at', 'desc' )->with( 'channel' )->get();
+			$threads = Thread::orderBy( 'created_at', 'desc' )->with( 'channel' );
 		}
+
+		/**
+		 * filter by user name
+		 */
+		if ( $username = \request( 'by' ) ) {
+			$user = User::where( 'name', $username );
+			if ( $user->count() ) {
+				$user = $user->firstOrFail();
+				$threads->where( 'user_id', $user->id );
+			} else {
+				$threads = $threads->where( 'user_id', - 1 );
+			}
+
+
+		}
+		$threads = $threads->get();
 
 		return view( 'threads.index', compact( 'threads' ) );
 	}
@@ -48,10 +60,10 @@ class ThreadsController extends Controller {
 	 */
 	public function create() {
 
-//		$channels = Channel::all();
-		$channels = Channel::all( 'id', 'name' );
+//		$channels = Channel::all(); // app/Providers/AppServiceProvider.php
+//		$channels = Channel::all( 'id', 'name' );
 
-		return view( 'threads.create', compact( 'channels' ) );
+		return view( 'threads.create' );
 	}
 
 	/**

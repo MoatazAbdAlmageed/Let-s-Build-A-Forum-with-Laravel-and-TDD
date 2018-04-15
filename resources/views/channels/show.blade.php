@@ -5,8 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3><b>{{$thread->title}}</b> by <a href=""> {{$thread->owner->name}}</a>
-                        </h3></div>
+                    <div class="card-header"><h4><b>{{$thread->title}}</b> by <a href=""> {{$thread->owner->name}}</a>
+                        </h4></div>
 
                     <div class="card-body">
                         <p class="text-lg-left">  {{$thread->body}}</p>

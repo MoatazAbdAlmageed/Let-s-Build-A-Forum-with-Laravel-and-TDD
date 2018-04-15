@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h4>New</h4></div>
+                    <div class="card-header"><h4>New Thread</h4></div>
                     <div class="card-body">
 
                         @if ($errors->any())
@@ -27,9 +27,13 @@
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title"
+                            <input type="text" class="form-control"
+                                   value="{{old('title')}}"
+                                   name="title" id="title"
                                    aria-describedby="helpId"
-                                   placeholder="">
+                                   placeholder=""
+                                   required
+                            >
 
                         </div>
 
@@ -50,8 +54,8 @@
 
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea name="body" rows="5" class="form-control"
-                                      placeholder="have something to share?"></textarea>
+                            <textarea required name="body" rows="5" class="form-control"
+                                      placeholder="have something to share?"> {{old('body')}} </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary float-right">Publish
                         </button>

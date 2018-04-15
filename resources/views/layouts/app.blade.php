@@ -35,7 +35,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    {{--<li><a href="/channels/">Channels</a></li>--}}
+                    <li>
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Add
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <a href="{{url('threads/create')}}" class="dropdown-item">Thread</a>
+                                <a href="{{url('channels/create')}}" class="dropdown-item">Channel</a>
+                            </div>
+                        </div>
+
+                    </li>
 
 
                     <li>
@@ -47,14 +60,14 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 {{--<button class="dropdown-item" type="button">Action</button>--}}
-                                @foreach(\App\Channel::all() as $channel)
+                                @foreach($channels as $channel)
                                     <a href="{{$channel->path()}}" class="dropdown-item">{{$channel->name}}</a>
                                 @endforeach
                             </div>
                         </div>
                     </li>
 
-                    <li><a href="/threads/">Threads</a></li>
+                    <li><a class="btn btn-warning   " href="/threads/">Threads</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
