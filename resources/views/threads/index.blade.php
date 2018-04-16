@@ -39,8 +39,10 @@
                                         <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Channel</th>
 
+                                            @if (!isset($channel))
+                                                <th>Channel</th>
+                                            @endif
                                             @if (!request('by'))
                                                 <th>Author</th>
                                             @endif
@@ -53,9 +55,15 @@
                                             <tr>
                                                 <td scope="row"><a href="{{ $thread->path() }}"> {{$thread->title}}</a>
                                                 </td>
-                                                <td>
-                                                    <a href="{{$thread->channel->path()}}">{{$thread->channel['name']}}</a>
-                                                </td>
+
+
+                                                @if (!isset($channel))
+                                                    <td>
+                                                        <a href="{{$thread->channel->path()}}">{{$thread->channel['name']}}</a>
+                                                    </td>
+                                                @endif
+
+
 
                                                 @if (!request('by'))
                                                     <td>
