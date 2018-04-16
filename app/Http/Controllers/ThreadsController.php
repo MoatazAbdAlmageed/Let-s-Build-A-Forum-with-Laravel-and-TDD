@@ -26,6 +26,15 @@ class ThreadsController extends Controller {
 	public function index( Channel $channel ) {
 
 
+		return $this->getThreads( $channel );
+	}
+
+	/**
+	 * @param Channel $channel
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	protected function getThreads( Channel $channel ) {
 		if ( $channel->exists ) {
 			$threads = $channel->threads()->latest();
 
@@ -65,7 +74,6 @@ class ThreadsController extends Controller {
 
 //		$channels = Channel::all(); // app/Providers/AppServiceProvider.php
 //		$channels = Channel::all( 'id', 'name' );
-
 		return view( 'threads.create' );
 	}
 

@@ -10398,3 +10398,23 @@ a.text-dark:focus {
   margin-right: 1em;
 }
 
+.navbar-laravel {
+  background-color: #495057;
+}
+
+.navbar-laravel .navbar-nav li a {
+  color: #ddd;
+}
+
+.navbar-laravel .dropdown-menu a {
+  color: #000 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #eee;
+}
+
+.navbar-light .navbar-brand {
+  color: #eee;
+}
+

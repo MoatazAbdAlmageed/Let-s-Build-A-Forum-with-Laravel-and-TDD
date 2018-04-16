@@ -65,8 +65,8 @@ class ChannelController extends Controller {
 	public function show( $id ) {
 
 		$threads = Thread::where( 'channel_id', $id )->with( 'channel' )->get();
-		$channel = Channel::where( 'id', $id )->first();
 
+		$channel = Channel::where( 'id', $id )->first();
 
 		return view( 'threads.index', compact( 'threads', 'channel' ) );
 	}

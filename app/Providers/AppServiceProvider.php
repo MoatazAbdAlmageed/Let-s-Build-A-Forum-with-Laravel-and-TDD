@@ -12,8 +12,10 @@ class AppServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
+
+
 		\View::composer( '*', function ( $view ) {
-			$view->with( 'channels', Channel::all() );
+			$view->with( [ 'channels' => Channel::all() ] );
 		} );
 
 //		if ( ! \App::runningUnitTests() ) {
