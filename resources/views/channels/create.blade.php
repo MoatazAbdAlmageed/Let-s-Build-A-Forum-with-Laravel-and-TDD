@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h4>New Channel</h4></div>
+                    <div class="card-header yellow"><h4>New Channel</h4></div>
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">

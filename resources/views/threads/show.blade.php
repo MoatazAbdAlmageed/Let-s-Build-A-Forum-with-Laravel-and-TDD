@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3><b>{{$thread->title}}</b>
+                    <div class="card-header yellow"><h3><b>{{$thread->title}}</b>
                             by
                             <a href="{{url('threads') }}?by={{  $thread->owner->name }}">
 

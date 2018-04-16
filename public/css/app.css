@@ -10418,3 +10418,20 @@ a.text-dark:focus {
   color: #eee;
 }
 
+body {
+  background: #eee;
+}
+
+.navbar-light .navbar-brand,
+#navbarDropdown:hover {
+  color: #ffc107 !important;
+}
+
+.card-header.yellow {
+  background: #ffc107;
+}
+
+.card-header a {
+  color: #fff;
+}
+
