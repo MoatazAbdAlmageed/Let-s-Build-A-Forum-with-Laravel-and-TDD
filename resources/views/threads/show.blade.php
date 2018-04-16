@@ -28,6 +28,45 @@
 
             </div>
         </div>
+
+        <br>
+        @if (count($thread->replies ))
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <div class="card">
+                        <div class="card-header"><h4>Replies</h4></div>
+                        <div class="card-body">
+                            @foreach($thread->replies as $reply)
+                                <div class="card">
+                                    <div class="card-header"><a href=""> {{$reply->owner->name}}</a>
+                                        since {{$reply->created_at->diffForHumans()}}</div>
+                                    <div class="card-body">
+
+                                        <p class="text-sm-left">  {{$reply->body}}</p>
+                                    </div>
+                                </div>
+                                <br>
+                            @endforeach
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        @else
+
+            <div class="alert alert-warning text-center" role="alert">
+                <strong>No comments!</strong>
+            </div>
+
+        @endif
+
+
         <br>
         @if (auth()->check())
             {{--Determine if the current user is authenticated. --}}
@@ -56,35 +95,6 @@
         @endif
         <br>
 
-        @if (count($thread->replies ))
 
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Replies</h4>
-
-                    @foreach($thread->replies as $reply)
-                        <div class="card">
-                            <div class="card-header"><a href=""> {{$reply->owner->name}}</a>
-                                since {{$reply->created_at->diffForHumans()}}</div>
-                            <div class="card-body">
-
-                                <p class="text-sm-left">  {{$reply->body}}</p>
-                            </div>
-                        </div>
-                        <br>
-                    @endforeach
-
-
-                </div>
-
-            </div>
-
-        @else
-
-            <div class="alert alert-warning text-center" role="alert">
-                <strong>No comments!</strong>
-            </div>
-
-    @endif
 
 @endsection
